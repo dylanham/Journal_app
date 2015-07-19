@@ -1,6 +1,10 @@
 class JournalsController < ApplicationController
   before_action :set_journal, only: [:show, :edit, :update]
 
+  def index
+    @journals = Journal.all
+  end
+
   def show
   end
 

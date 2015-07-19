@@ -1,3 +1,5 @@
 .page-header
   %h1 Welcome to Journal It
+- if Journal.all.length > 0
+  = link_to 'View your journals', journals_path, class: 'btn btn-info'
 = link_to 'Create a New Journal', new_journal_path, class: 'btn btn-primary'

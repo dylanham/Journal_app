@@ -1,6 +1,23 @@
+= link_to 'Create an Entry', new_journal_journal_entry_path(@journal)
+.pull-right= link_to 'Home', root_path
+%hr
 .page-header
   .pull-right
     = link_to 'Edit Journal', edit_journal_path(@journal), class: 'btn btn-primary'
-    = link_to 'Delete', journal_path(@journal), method: :delete, class: 'btn btn-danger'
+    = link_to 'Delete', journal_path(@journal), method: :delete, class: 'btn btn-danger', data:{comfirm: 'Are you sure?'}
   %h1= @journal.name
-= link_to 'Create an Entry', new_journal_journal_entry(@journal)
+  - @journal.journal_entries.each do |entry|
+    %table.table
+      %thead
+        %th.col-md-3 Date
+        %th.col-md-3 Rating
+        %th.col-md-3{colspan: 2} Content
+      %tbody
+        %tr
+          - if entry.date
+            %td.col-md-3= entry.date.strftime('%m/%d/%Y')
+          %td.col-md-3= entry.rating
+          %td.col-md-3= entry.content
+          %td.col-md-3
+            = link_to 'Edit', edit_journal_journal_entry_path(@journal, entry), class: 'btn btn-primary'
+            = link_to 'Delete', journal_journal_entry_path(@journal, entry), method: :delete, class: 'btn btn-danger', data: {comfirtm: 'Are you sure?'}

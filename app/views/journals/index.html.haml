@@ -1,0 +1,4 @@
+.page-header
+  %h1 Journals!
+- @journals.each do |journal|
+  =link_to journal.name, journal_path(journal)
